@@ -29,7 +29,10 @@ class ApiFeatures {
 
     }
     pagination(resutlPerPage){
-        
+        const currentPage =Number(this.queryStr.page) || 1;
+        const skip = resutlPerPage*(currentPage-1);
+        this.query =this.query.limit(resutlPerPage).skip(skip);
+        return this;
         
     }
 }
