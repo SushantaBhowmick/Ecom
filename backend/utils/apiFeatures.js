@@ -28,7 +28,8 @@ class ApiFeatures {
         return this; 
 
     }
-    pagination(){
+    pagination(resutlPerPage){
+        
         
     }
 }
