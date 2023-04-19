@@ -13,9 +13,9 @@ const router = express.Router();
 
 
 router.route('/product/new').post(isAuthenticatedUser,authorizeRoles("admin"), createProduct)
-router.route('/products').get(isAuthenticatedUser,authorizeRoles("admin"),getAllProducts)
+router.route('/products').get(getAllProducts)
 router.route('/product/:id').get(getProductDetails)
-router.route('/product/:id').put(isAuthenticatedUser,authorizeRoles("admin"), isAuthenticatedUser,updateProduct)
-router.route('/product/:id').delete(isAuthenticatedUser,authorizeRoles("admin"), isAuthenticatedUser,deleteProduct)
+router.route('/product/:id').put(isAuthenticatedUser,authorizeRoles("admin"),updateProduct)
+router.route('/product/:id').delete(isAuthenticatedUser,authorizeRoles("admin"),deleteProduct)
 
 module.exports = router
