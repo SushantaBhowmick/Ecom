@@ -21,7 +21,7 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 //get all products
 exports.getAllProducts = catchAsyncError(async (req, res, next) => {
     const resutlPerPage = 8;
-    const productCount = await Product.countDocuments()
+    const productsCount = await Product.countDocuments()
     const apiFeatures = new ApiFeatures(Product.find(), req.query)
         .search()
         .filter()
@@ -31,7 +31,21 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
     res.status(200).json({
         success: true,
         products,
-        productCount
+        productsCount
+    })
+}
+)
+
+//get Product details
+exports.getProductDetails = catchAsyncError(async (req, res, next) => {
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+        return next(new ErrorHandler("Product not found", 404))
+    }
+    res.status(200).json({
+        success: true,
+        product,
     })
 }
 )
@@ -73,19 +87,6 @@ exports.deleteProduct = catchAsyncError(async (req, res, next) => {
 }
 )
 
-exports.getProductDetails = catchAsyncError(async (req, res, next) => {
-    const product = await Product.findById(req.params.id);
-
-    if (!product) {
-        return next(new ErrorHandler("Product not found", 404))
-    }
-    res.status(200).json({
-        success: true,
-        message: "User Get successfully!",
-        product
-    })
-}
-)
 
 //create New Review or Update the review
 exports.createProductReview = catchAsyncError(async (req, res, next) => {
