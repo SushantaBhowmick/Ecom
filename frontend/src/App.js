@@ -5,6 +5,7 @@ import './App.css';
 import Header from "./components/layout/Header/Header"
 import Footer from './components/layout/Footer/Footer';
 import Home from './components/Home/Home';
+import Loader from './components/layout/Loader/Loader';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <Header />
     <Routes>
     <Route exact path='/' element={<Home />}/>
+    <Route exact path='/load' element={<Loader />}/>
     </Routes>
     <Footer />
   </Router>

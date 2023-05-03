@@ -26,7 +26,6 @@ const Footer = () => {
         <a href="https://twitter.com/Sushant31147320">Twitter</a>
       </div>
 
-
     </footer>
   )
 }
