@@ -18,10 +18,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 //Route Imports
-const product= require('./routes/prodRoute')
+const products= require('./routes/prodRoute')
 const user= require('./routes/userRoutes');
 const order= require('./routes/orderRoute');
-app.use('/api/v1',product);
+app.use('/api/v1',products);
 app.use('/api/v1',user);
 app.use('/api/v1',order);
 

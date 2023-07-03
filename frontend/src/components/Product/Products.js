@@ -14,7 +14,7 @@ const Products = () => {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [price, setPrice] = useState(0,25000)
+  const [price, setPrice] = useState([0,25000])
 
   const { products, loading, error, productsCount, resultPerPage } = useSelector(
     (state) => state.products
