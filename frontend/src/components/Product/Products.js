@@ -2,12 +2,14 @@ import React, { Fragment, useEffect, useState } from 'react'
 import "./Product.css"
 import Loader from '../layout/Loader/Loader'
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../actions/productAction';
+import { clearErrors, getProduct } from '../../actions/productAction';
 import ProductCard from '../Home/ProductCard'
 import { useParams } from 'react-router-dom'
 import Pagination from 'react-js-pagination';
 import Typography from '@material-ui/core/Typography'
 import { Slider } from '@material-ui/core';
+import {useAlert} from 'react-alert'
+import MetaData from '../layout/MetaData';
 
 const categories=[
   "Laptop",
@@ -28,7 +30,9 @@ const Products = () => {
   const [price, setPrice] = useState([0,25000]);
   const [category,setCategory]= useState("");
 
-  const [ ratings,setRatings]= useState(0)
+  const [ ratings,setRatings]= useState(0);
+
+  const alert = useAlert();
 
   const { 
     products, 
@@ -49,14 +53,20 @@ const Products = () => {
   }
 
   useEffect(() => {
+    if(error){
+      alert.error(error);
+      dispatch(clearErrors())
+    }
     dispatch(getProduct(keyword,currentPage,price,category,ratings));
-  }, [dispatch, keyword,currentPage,price,category,ratings]);
+  }, [dispatch, keyword,currentPage,price,category,ratings,alert,error]);
 
 
   return (
     <Fragment>
       {loading ? (<Loader />) : (
         <Fragment>
+          <MetaData title="PRODUCTS -- ECOMMERCE" />
+
           <h2 className="productsHeading">Products</h2>
 
           <div className="products">
