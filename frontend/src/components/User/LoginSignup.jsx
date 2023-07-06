@@ -1,11 +1,24 @@
-import React, { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState,useEffect } from 'react'
 import './LoginSignup.css'
 import { Link } from 'react-router-dom'
 import MailOutlineIcon from "@material-ui/icons/MailOutline"
 import LockOpenIcon from "@material-ui/icons/LockOpen"
-import FaceIcon from "@material-ui/icons/Face"
+import FaceIcon from "@material-ui/icons/Face";
+import { useAlert} from 'react-alert'
+import { useDispatch,useSelector} from 'react-redux';
+import {clearErrors,login,register} from '../../actions/userAction'
+import Loader from '../layout/Loader/Loader'
+import {useNavigate } from 'react-router-dom'
+
 
 const LoginSignup = () => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const {error,loading,isAuthenticated} =useSelector(state => state.user);
+
+
 
     const loginTab = useRef(null);
     const registerTab = useRef(null);
@@ -24,18 +37,18 @@ const LoginSignup = () => {
 
     const loginSubmit = (e) => {
         e.preventDefault();
-        console.log("Login Form Submitted");
+        dispatch(login(loginEmail,loginPassword))
     }
 
     const registerSubmit = (e) => {
-        e.prevenDefault()
+        e.preventDefault()
         const myForm = new FormData();
 
         myForm.set("name", name);
         myForm.set("email", email);
         myForm.set("password", password);
         myForm.set("avatar", avatar);
-        console.log("Sign Up Form Submitted");
+        dispatch(register(myForm))
 
     }
     const registerDataChange = (e) => {
@@ -54,6 +67,15 @@ const LoginSignup = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
+  useEffect(() => {
+    if(error){
+        alert.error(error);
+        dispatch(clearErrors())
+    }
+    navigate(isAuthenticated ?  `/account` : `/login`);
+    
+  }, [dispatch,error,alert,isAuthenticated,navigate])
+  
 
     const switchTabs = (e, tab) => {
         if (tab === "login") {
@@ -79,6 +101,8 @@ const LoginSignup = () => {
 
 
     return (
+       <Fragment >
+        (loading?<Loader /> : 
         <Fragment>
             <div className="LoginSignupContainer">
                 <div className="LoginSignupBox">
@@ -165,8 +189,11 @@ const LoginSignup = () => {
                     </form>
                 </div>
             </div>
-        </Fragment>
+        </Fragment>)
+       </Fragment>
     )
 }
 
 export default LoginSignup
+
+//7:51:55
