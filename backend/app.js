@@ -3,7 +3,8 @@ const  express = require('express');
 
 const errorHandler = require('./middleware/error')
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 
 const app =  express();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({
 
   // parse application/json
 app.use(bodyParser.json())
+app.use(fileUpload());
 
 //Route Imports
 const products= require('./routes/prodRoute')
