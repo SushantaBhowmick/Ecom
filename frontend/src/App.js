@@ -11,8 +11,13 @@ import Search from './components/Product/Search.jsx';
 import LoginSignup from './components/User/LoginSignup';
 import store from './store'
 import { loadUser } from './actions/userAction';
+import UserOptions from "./components/layout/Header/UserOptions.js"
+import { useSelector } from 'react-redux';
+import Profile from './components/User/Profile';
 
 function App() {
+
+  const {isAuthenticated,user} = useSelector(state=>state.user)
 
   useEffect(()=>{
     WebFont.load({
@@ -26,12 +31,14 @@ function App() {
   return (
   <Router>
     <Header />
+    {isAuthenticated && <UserOptions user={user} />}
     <Routes>
     <Route exact path='/' element={<Home />}/>
     <Route exact path='/product/:id' element={<ProductDetails />}/>
     <Route exact path='/products' element={<Products />}/>
     <Route path='/products/:keyword' element={<Products />}/>
     <Route exact path='/search' element={<Search />}/>
+    <Route exact path='/account' element={<Profile />}/>
 
     <Route exact path='/login' element={<LoginSignup />} />
 
