@@ -4,14 +4,14 @@ const User = require('../models/userModel');
 const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
-const cloudinary =require('cloudinary');
+const cloudinary = require('cloudinary');
 
 
 //register a user
 exports.registerUser = catchAsyncError(async (req, res, next) => {
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
         folder: "avatars",
-        width:150,
+        width: 150,
         crop: "scale",
     })
     const { name, email, password } = req.body;
@@ -174,25 +174,42 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
         email: req.body.email,
+    };
+
+    if (req.body.avatar !== "") {
+        const user = await User.findById(req.user.id);
+        const imageId = user.avatar.public_id;
+        await cloudinary.v2.uploader.destroy(imageId);
+
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: "avatars",
+            width: 150,
+            crop: "scale",
+        });
+
+        newUserData.avatar = {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url,
+        };
     }
 
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
         new: true,
         runValidators: true,
         useFindAndModify: false
-    })
+    });
     res.status(200).json({
         success: true
-    })
+    });
 })
 
-//get all users
+//get all users(admin)
 exports.getAllUsers = catchAsyncError(async (req, res, next) => {
 
     const user = await User.find();
 
     res.status(200).json({
-        success:true,
+        success: true,
         user
     })
 
@@ -203,18 +220,18 @@ exports.getSingleUser = catchAsyncError(async (req, res, next) => {
 
     const user = await User.findById(req.params.id);
 
-    if(!user){
+    if (!user) {
         return next(new ErrorHandler(`User does not exits with id :${req.params.id}`))
     }
 
     res.status(200).json({
-        success:true,
+        success: true,
         user
     })
 
 })
 
- 
+
 //update User Role  --Admin
 exports.updateUserRole = catchAsyncError(async (req, res, next) => {
 
@@ -238,17 +255,17 @@ exports.updateUserRole = catchAsyncError(async (req, res, next) => {
 exports.deleteUser = catchAsyncError(async (req, res, next) => {
 
     const user = await User.findById(req.params.id);
-//    We will remove from cloudnary
+    //    We will remove from cloudnary
 
-if(!user){
-    return next(new ErrorHandler(`User does not exits with id :${req.params.id}`))
-}
+    if (!user) {
+        return next(new ErrorHandler(`User does not exits with id :${req.params.id}`))
+    }
 
-await User.findByIdAndDelete(user);
+    await User.findByIdAndDelete(user);
 
     res.status(200).json({
         success: true,
-        message:"User Deleted Successfully!"
+        message: "User Deleted Successfully!"
     })
 })
 

@@ -25,9 +25,7 @@ const UpdateProfile = () => {
 
     const updateProfileSubmit = (e) => {
         e.preventDefault();
-    
         const myForm = new FormData();
-    
         myForm.set("name", name);
         myForm.set("email", email);
         myForm.set("avatar", avatar);
@@ -61,14 +59,15 @@ const UpdateProfile = () => {
         if(isUpdated){
             alert.success("Profile Updated Successfully!")
             dispatch(loadUser());
-            navigate('/account');
+
+            navigate("/account");
 
             dispatch({
                 type: UPDATE_PROFILE_RESET,
             })
         }
         
-      }, [dispatch,error,alert,isUpdated,navigate,user])
+      }, [dispatch,error,alert,navigate,user,isUpdated])
       
 
   return (
@@ -114,7 +113,7 @@ const UpdateProfile = () => {
                                />
                            </div>
                            <input type="submit"
-                               value={"updateProfile"}
+                               value={"Update"}
                                className='updateProfileBtn'
                            disabled={loading ? true : false}
                            />
