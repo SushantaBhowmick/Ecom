@@ -29,7 +29,7 @@ router
 .delete(isAuthenticatedUser,authorizeRoles("admin"),deleteUser);
 
 router.route("/me").get(isAuthenticatedUser,getUserDetails);
-router.route("/update").put(isAuthenticatedUser,updatePassword);
+router.route("/password/update").put(isAuthenticatedUser,updatePassword);
 router.route("/me/update").put(isAuthenticatedUser,updateProfile);
 
 module.exports = router

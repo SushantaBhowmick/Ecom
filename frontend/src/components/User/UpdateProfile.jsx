@@ -67,7 +67,7 @@ const UpdateProfile = () => {
             })
         }
         
-      }, [dispatch,error,alert,navigate,user,isUpdated])
+      }, [dispatch,error,alert,navigate,user,isUpdated]);
       
 
   return (
