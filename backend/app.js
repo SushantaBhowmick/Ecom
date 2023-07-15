@@ -9,15 +9,13 @@ const fileUpload = require('express-fileupload');
 
 const app =  express();
 
+// parse application/json
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-    extended: true
-  }));
-
-  // parse application/json
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(fileUpload());
+
 
 //Route Imports
 const products= require('./routes/prodRoute')
