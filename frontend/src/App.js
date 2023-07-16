@@ -19,7 +19,8 @@ import UpdateProfile from './components/User/UpdateProfile';
 import UpdatePassword from './components/User/UpdatePassword';
 import ForgotPassword from './components/User/ForgotPassword';
 import ResetPassword from './components/User/ResetPassword';
-import Cart from './components/Cart/Cart.jsx';
+import Cart from './components/Cart/Cart';
+import Shipping from './components/Cart/Shipping.jsx';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
       <Route exact path='/account' element={<Profile />} />
       <Route exact path='/me/update' element={<UpdateProfile />} />
       <Route exact path='/password/update' element={<UpdatePassword />} />
+      <Route exact path='/shipping' element={<Shipping />} />
     </Route>
     
     <Route exact path='/password/forgot' element={<ForgotPassword />} />
@@ -66,4 +68,3 @@ function App() {
 
 export default App;
 
-//9.48.36s

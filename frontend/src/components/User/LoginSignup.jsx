@@ -1,6 +1,6 @@
 import React, { Fragment, useRef, useState,useEffect } from 'react'
 import './LoginSignup.css'
-import { Link, redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import MailOutlineIcon from "@material-ui/icons/MailOutline"
 import LockOpenIcon from "@material-ui/icons/LockOpen"
 import FaceIcon from "@material-ui/icons/Face";
@@ -77,7 +77,7 @@ const LoginSignup = () => {
         dispatch(clearErrors())
     }
     if(isAuthenticated){
-        navigate(redirect)
+        navigate(`/${redirect}`)
     }
     
   }, [dispatch,error,alert,isAuthenticated,navigate,redirect])

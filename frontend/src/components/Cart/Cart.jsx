@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addItemsToCart,removeItemFromCart } from '../../actions/cartAction'
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import { Link, useNavigate } from 'react-router-dom'
+import MetaData from '../layout/MetaData'
 
 const Cart = () => {
 
@@ -45,6 +46,7 @@ const Cart = () => {
                 </div>
             ):(
                 <Fragment>
+                    <MetaData title={`Cart(${cartItems.length})`} />
                 <div className="cartPage">
                     <div className="cartHeader">
                         <p>Product</p>
