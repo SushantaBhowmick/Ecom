@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Carousel from "react-material-ui-carousel"
 import './ProductDetails.css'
@@ -9,6 +9,8 @@ import ReviewCard from './ReviewCard.jsx'
 import Loader from '../layout/Loader/Loader'
 import { useAlert } from 'react-alert'
 import MetaData from '../layout/MetaData'
+import { addItemsToCart } from '../../actions/cartAction'
+
 
 
 
@@ -22,6 +24,35 @@ const ProductDetails = () => {
     const { product, loading, error } = useSelector(
         (state) => state.productDetails
     );
+    const options = {
+        edit: false,
+        color: "rgba(20,20,20,0.1)",
+        activeColor: "tomato",
+        size: window.innerWidth < 600 ? 20 : 25,
+        value: product.ratings,
+        isHalf: true,
+    }
+
+    const [quantity, setQuantity] = useState(1)
+
+    const increaseQuantity = ()=>{
+        if(product.stock <= quantity) return;
+
+        const qty = quantity + 1;
+        setQuantity(qty)
+    }
+
+    const decreaseQuantity = ()=>{
+        if(1 >= quantity) return;
+
+        const qty = quantity - 1;
+        setQuantity(qty)
+    }
+
+    const addToCartHandler = () =>{
+        dispatch(addItemsToCart(id,quantity))
+        alert.success("Item Added To Cart")
+    }
 
     useEffect(() => {
         if(error){
@@ -32,14 +63,6 @@ const ProductDetails = () => {
         dispatch(getProductDetails(id));
     }, [dispatch, id,alert,error]);
 
-    const options = {
-        edit: false,
-        color: "rgba(20,20,20,0.1)",
-        activeColor: "tomato",
-        size: window.innerWidth < 600 ? 20 : 25,
-        value: product.ratings,
-        isHalf: true,
-    }
 
 
     return (
@@ -81,11 +104,11 @@ const ProductDetails = () => {
                                     <h1>{`₹${product.price}`}</h1>
                                     <div className="detailsBlock-3-1">
                                         <div className="detailsBlock-3-1-1">
-                                            <button>-</button>
-                                            <input type="number" value={"1"} />
-                                            <button>+</button>
+                                            <button onClick={decreaseQuantity}>-</button>
+                                            <input readOnly type="number" value={quantity} />
+                                            <button onClick={increaseQuantity}>+</button>
                                         </div>
-                                        <button>Add to Cart</button>
+                                        <button onClick={addToCartHandler}>Add to Cart</button>
                                     </div>
                                     <p>Status:{" "}
                                         <b className={product.Stock < 1 ? "redColor" : "greenColor"}>

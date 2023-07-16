@@ -18,7 +18,8 @@ import ProtectedRoute from './components/Route/ProtectedRoute';
 import UpdateProfile from './components/User/UpdateProfile';
 import UpdatePassword from './components/User/UpdatePassword';
 import ForgotPassword from './components/User/ForgotPassword';
-import ResetPassword from './components/User/ResetPassword.jsx';
+import ResetPassword from './components/User/ResetPassword';
+import Cart from './components/Cart/Cart.jsx';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
     <Route exact path='/products' element={<Products />}/>
     <Route path='/products/:keyword' element={<Products />}/>
     <Route exact path='/search' element={<Search />}/>
+    <Route exact path='/login' element={<LoginSignup />} />
 
     <Route element={<ProtectedRoute/> }>
       <Route exact path='/account' element={<Profile />} />
@@ -52,8 +54,8 @@ function App() {
     
     <Route exact path='/password/forgot' element={<ForgotPassword />} />
     <Route exact path='/password/reset/:token' element={<ResetPassword />} />
+    <Route exact path='/cart' element={<Cart />} />
 
-    <Route exact path='/login' element={<LoginSignup />} />
 
     
     </Routes>
@@ -63,3 +65,5 @@ function App() {
 }
 
 export default App;
+
+//9.48.36s
