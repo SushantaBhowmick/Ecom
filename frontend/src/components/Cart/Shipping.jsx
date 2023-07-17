@@ -10,11 +10,16 @@ import {Country,State} from 'country-state-city'
 import MetaData from '../layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
+import CheckOutSteps from "../Cart/CheckOutSteps"
+import { saveShippingInfo } from '../../actions/cartAction';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Shipping = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
+    const navigate = useNavigate();
     const { shippingInfo} = useSelector((state)=> state.cart);
 
     const [address, setAddress] = useState(shippingInfo.address);
@@ -24,12 +29,24 @@ const Shipping = () => {
     const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
     const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
 
-    const shippingSubmit =()=>{
-        
+    const shippingSubmit =(e)=>{
+        e.preventDefault();
+
+        if(phoneNo.length<10 || phoneNo.length>10){
+            alert.error("Phone Number should be 10 digits Long");
+            return;
+        }
+        dispatch(
+            saveShippingInfo({address,city,state,country,pinCode,phoneNo})
+        )
+        navigate("/order/Confirm")
     }    
   return (
     <Fragment>
         <MetaData title={`Shipping Details`} />
+
+        <CheckOutSteps activeStep={0} />
+
         <div className="shippingContainer">
             <div className="shippingBox">
                 <h2 className="shippingHeading">Shipping Details</h2>
@@ -136,6 +153,7 @@ const Shipping = () => {
                 </form>
             </div>
         </div>
+
     </Fragment>
   )
 }
