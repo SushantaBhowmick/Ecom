@@ -77,7 +77,7 @@ const LoginSignup = () => {
         dispatch(clearErrors())
     }
     if(isAuthenticated){
-        navigate(`/${redirect}`)
+        navigate(`${redirect}`)
     }
     
   }, [dispatch,error,alert,isAuthenticated,navigate,redirect])

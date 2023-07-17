@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {BrowserRouter as Router, Route, Routes, } from "react-router-dom"
+import axios from 'axios';
+import {Elements} from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js';
 import WebFont from 'webfontloader'
 import './App.css';
 import Header from "./components/layout/Header/Header"
@@ -21,11 +24,20 @@ import ForgotPassword from './components/User/ForgotPassword';
 import ResetPassword from './components/User/ResetPassword';
 import Cart from './components/Cart/Cart';
 import Shipping from './components/Cart/Shipping';
-import ConfirmOrder from './components/Cart/ConfirmOrder.jsx';
+import ConfirmOrder from './components/Cart/ConfirmOrder';
+import Payment from './components/Cart/Payment.jsx';
 
 function App() {
 
-  const {isAuthenticated,user} = useSelector(state=>state.user)
+  const {isAuthenticated,user} = useSelector(state=>state.user);
+
+  const [stripeApiKey, setStripeApiKey] =useState("");
+
+  async function getStripeApiKey(){
+    const {data} = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
 
   useEffect(()=>{
     WebFont.load({
@@ -33,8 +45,12 @@ function App() {
         families: ["Roboto","Droid Sans","Chilanka"],
       },
     });
-    store.dispatch(loadUser())
+    store.dispatch(loadUser());
+
+    getStripeApiKey();
+
   },[])
+
 
   return (
   <Router>
@@ -52,9 +68,14 @@ function App() {
       <Route exact path='/account' element={<Profile />} />
       <Route exact path='/me/update' element={<UpdateProfile />} />
       <Route exact path='/password/update' element={<UpdatePassword />} />
-      <Route exact path='/shipping' element={<Shipping />} />
+      <Route exact path='/login/shipping' element={<Shipping />} />
       <Route exact path='/order/confirm' element={<ConfirmOrder />} />
+
+     {stripeApiKey && <Route exact path='/process/payment' element={ <Elements stripe={loadStripe(stripeApiKey)} > <Payment /> </Elements>} />}
+    
     </Route>
+
+ 
     
     <Route exact path='/password/forgot' element={<ForgotPassword />} />
     <Route exact path='/password/reset/:token' element={<ResetPassword />} />
@@ -69,5 +90,4 @@ function App() {
 }
 
 export default App;
-
-
+//11.30.30s
