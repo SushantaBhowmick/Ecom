@@ -11,6 +11,7 @@
   "author": "Sushanta Bhowmick",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cloudinary": "^1.37.3",

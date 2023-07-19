@@ -26,7 +26,8 @@ import Cart from './components/Cart/Cart';
 import Shipping from './components/Cart/Shipping';
 import ConfirmOrder from './components/Cart/ConfirmOrder';
 import Payment from './components/Cart/Payment';
-import OrderSuccess from './components/Cart/OrderSuccess.jsx';
+import OrderSuccess from './components/Cart/OrderSuccess';
+import Orders from './components/Order/Orders.jsx';
 
 function App() {
 
@@ -73,12 +74,12 @@ function App() {
       <Route exact path='/order/confirm' element={<ConfirmOrder />} />
 
      {stripeApiKey && <Route exact path='/process/payment' element={ <Elements stripe={loadStripe(stripeApiKey)} > <Payment /> </Elements>} />}
+
       <Route exact path='/success' element={<OrderSuccess />} />
-    
+      <Route exact path='/orders' element={<Orders />} />
     </Route>
 
  
-    
     <Route exact path='/password/forgot' element={<ForgotPassword />} />
     <Route exact path='/password/reset/:token' element={<ResetPassword />} />
     <Route exact path='/cart' element={<Cart />} />
