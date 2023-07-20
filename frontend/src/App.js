@@ -27,7 +27,10 @@ import Shipping from './components/Cart/Shipping';
 import ConfirmOrder from './components/Cart/ConfirmOrder';
 import Payment from './components/Cart/Payment';
 import OrderSuccess from './components/Cart/OrderSuccess';
-import Orders from './components/Order/Orders.jsx';
+import Orders from './components/Order/Orders';
+import OrderDetails from './components/Order/OrderDetails';
+
+
 
 function App() {
 
@@ -65,6 +68,7 @@ function App() {
     <Route path='/products/:keyword' element={<Products />}/>
     <Route exact path='/search' element={<Search />}/>
     <Route exact path='/login' element={<LoginSignup />} />
+    <Route exact path='/cart' element={<Cart />} />
 
     <Route element={<ProtectedRoute/> }>
       <Route exact path='/account' element={<Profile />} />
@@ -77,12 +81,14 @@ function App() {
 
       <Route exact path='/success' element={<OrderSuccess />} />
       <Route exact path='/orders' element={<Orders />} />
+
+      <Route exact path='/order/:id' element={<OrderDetails /> } />
+
     </Route>
 
  
     <Route exact path='/password/forgot' element={<ForgotPassword />} />
     <Route exact path='/password/reset/:token' element={<ResetPassword />} />
-    <Route exact path='/cart' element={<Cart />} />
 
 
     
