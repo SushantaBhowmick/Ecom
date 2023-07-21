@@ -1,5 +1,5 @@
 const  express = require('express');
-
+const cors = require('cors');
 const errorHandler = require('./middleware/error')
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json())
+app.use(cors());
 app.use(fileUpload());
 
 
