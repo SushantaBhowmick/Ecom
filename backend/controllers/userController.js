@@ -31,6 +31,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
 
 //loginUser
 exports.loginUser = catchAsyncError(async (req, res, next) => {
+    
     const { email, password } = req.body;
 
     //checking if user has given password and email both or not  
@@ -140,7 +141,7 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
 
 //Get User Details
-exports.getUserDetails = catchAsyncError(async (req, res, nect) => {
+exports.getUserDetails = catchAsyncError(async (req, res, next) => {
     const user = await User.findById(req.user.id);
 
     res.status(200).json({
@@ -149,7 +150,7 @@ exports.getUserDetails = catchAsyncError(async (req, res, nect) => {
     })
 })
 
-//Get User Details
+// /update password
 exports.updatePassword = catchAsyncError(async (req, res, next) => {
     const user = await User.findById(req.user.id).select("+password");
 

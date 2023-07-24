@@ -22,6 +22,8 @@ const ProductDetails = () => {
 
 
     const { product, loading, error } = useSelector((state) => state.productDetails);
+    const { isAuthenticated } = useSelector((state) => state.user);
+
     const options = {
         edit: false,
         color: "rgba(20,20,20,0.1)",
@@ -48,8 +50,13 @@ const ProductDetails = () => {
     }
 
     const addToCartHandler = () =>{
-        dispatch(addItemsToCart(id,quantity))
-        alert.success("Item Added To Cart")
+        if(!isAuthenticated){
+            alert.error("Login First")
+        }else{
+
+            dispatch(addItemsToCart(id,quantity))
+            alert.success("Item Added To Cart")
+        }
     }
 
 
@@ -127,7 +134,7 @@ const ProductDetails = () => {
                         <h3 className="reviewHeading">Review</h3>
                         {product.reviews && product.reviews[0] ? (
                             <div className="reviews">
-                                {product.reviews && product.reviews.map((review) => <ReviewCard review={review} />)}
+                                {product.reviews && product.reviews.map((review) => <ReviewCard key={review._id} review={review} />)}
                             </div>
                         ) : (
                             <p className="noReviews">No Reviews Yet</p>

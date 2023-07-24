@@ -1,8 +1,8 @@
 
 import { createStore, combineReducers,applyMiddleware} from "redux";
+import thunk from "redux-thunk";
 import { persistStore,persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { 
     productDetailsReducer, 
@@ -51,7 +51,5 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(...middleware))
 )
 const persistor = persistStore(store)
-
-
 export default store;
 export {persistor}

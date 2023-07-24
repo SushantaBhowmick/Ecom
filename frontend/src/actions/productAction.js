@@ -23,7 +23,7 @@ export const getProduct =
           link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
         }
 
-        const { data } = await axios.get(link);
+        const { data } = await axios.get(link,{withCredentials: true});
 
         dispatch({
           type: ALL_PRODUCT_SUCCESS,
@@ -43,7 +43,7 @@ export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/product/${id}`);
+    const { data } = await axios.get(`http://localhost:4000/api/v1/product/${id}`,{withCredentials: true});
 
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
