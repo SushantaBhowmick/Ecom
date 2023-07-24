@@ -81,10 +81,12 @@
     justify-content: flex-start;
     align-items: center;
 }
-.productCard > div > span{
+.productCard-span{
     margin: 0.5vmax;
-    font: 300 0.7vmax "Roboto";
+    color: rgb(73, 71, 71);
+    font: 300 0.7vmax cursive;
 }
+
 
 .productCard > p{
     font-family: "Roboto";
