@@ -21,9 +21,9 @@ const ProductDetails = () => {
     const alert = useAlert();
 
 
-    const { product, loading, error } = useSelector(
-        (state) => state.productDetails
-    );
+    const { product, loading, error } = useSelector((state) => state.productDetails);
+    const { isAuthenticated } = useSelector((state) => state.user);
+
     const options = {
         edit: false,
         color: "rgba(20,20,20,0.1)",
@@ -50,17 +50,24 @@ const ProductDetails = () => {
     }
 
     const addToCartHandler = () =>{
-        dispatch(addItemsToCart(id,quantity))
-        alert.success("Item Added To Cart")
+        if(!isAuthenticated){
+            alert.error("Login First")
+        }else{
+
+            dispatch(addItemsToCart(id,quantity))
+            alert.success("Item Added To Cart")
+        }
     }
+
 
     useEffect(() => {
         if(error){
           alert.error(error)
           dispatch(clearErrors())
         }
-
+        
         dispatch(getProductDetails(id));
+
     }, [dispatch, id,alert,error]);
 
 
@@ -108,7 +115,7 @@ const ProductDetails = () => {
                                             <input readOnly type="number" value={quantity} />
                                             <button onClick={increaseQuantity}>+</button>
                                         </div>
-                                        <button onClick={addToCartHandler}>Add to Cart</button>
+                                        <button disabled={product.Stock<1 ? true:false} onClick={addToCartHandler}>Add to Cart</button>
                                     </div>
                                     <p>Status:{" "}
                                         <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
@@ -127,7 +134,7 @@ const ProductDetails = () => {
                         <h3 className="reviewHeading">Review</h3>
                         {product.reviews && product.reviews[0] ? (
                             <div className="reviews">
-                                {product.reviews && product.reviews.map((review) => <ReviewCard review={review} />)}
+                                {product.reviews && product.reviews.map((review) => <ReviewCard key={review._id} review={review} />)}
                             </div>
                         ) : (
                             <p className="noReviews">No Reviews Yet</p>

@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
    <AlertProvider template={AlertTemplate} {...options}>
-       <PersistGate loading={null} persistor={persistor}>  
+   <PersistGate loading={null} persistor={persistor}>  
       <App />
     </PersistGate>
     </AlertProvider>
