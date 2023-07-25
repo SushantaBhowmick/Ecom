@@ -29,6 +29,7 @@ import Payment from './components/Cart/Payment';
 import OrderSuccess from './components/Cart/OrderSuccess';
 import Orders from './components/Order/Orders';
 import OrderDetails from './components/Order/OrderDetails';
+import Dashboard from './components/admin/Dashboard.jsx';
 
 
 
@@ -85,6 +86,8 @@ function App() {
 
       <Route exact path='/order/:id' element={<OrderDetails /> } />
 
+      <Route isAdmin={true} exact path='/admin/dashboard' element={<Dashboard /> } />
+
     </Route>
 
  
@@ -100,3 +103,6 @@ function App() {
 }
 
 export default App;
+
+
+//12.33.18s
