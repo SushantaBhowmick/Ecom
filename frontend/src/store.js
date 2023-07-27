@@ -5,6 +5,7 @@ import { persistStore,persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { 
+    newProductReducer,
     newReviewSubmitReducer,
     productDetailsReducer, 
     productReducer 
@@ -29,6 +30,7 @@ const reducer = combineReducers({
     myOrders: myOrdersReducer,
     orderDetails: orderDetailsReducer,
     newReview: newReviewSubmitReducer,
+    newProduct: newProductReducer,
 })
 
 let initialState = {

@@ -31,6 +31,7 @@ import Orders from './components/Order/Orders';
 import OrderDetails from './components/Order/OrderDetails';
 import Dashboard from './components/Admin/Dashboard';
 import ProductList from './components/Admin/ProductList.jsx';
+import NewProduct from './components/Admin/NewProduct';
 
 
 
@@ -89,6 +90,7 @@ function App() {
 
       <Route isAdmin={true} exact path='/admin/dashboard' element={<Dashboard /> } />
       <Route isAdmin={true} exact path='/admin/products' element={<ProductList /> } />
+      <Route isAdmin={true}  path='/admin/product' element={<NewProduct /> } />
 
     </Route>
 
