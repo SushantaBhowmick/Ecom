@@ -8,7 +8,8 @@ import {
     newProductReducer,
     newReviewSubmitReducer,
     productDetailsReducer, 
-    productReducer 
+    productReducer, 
+    productsReducer 
 } from "./reducers/productReducer";
 import {forgotPasswordReducer, profileReducer, userReducer} from './reducers/userReducer'
 import { cartReducer } from "./reducers/cartReducer";
@@ -20,7 +21,7 @@ const persistConfig = {
 }
 
 const reducer = combineReducers({
-    products: productReducer,
+    products: productsReducer,
     productDetails: productDetailsReducer,
     user: userReducer,
     profile: profileReducer,
@@ -31,6 +32,7 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     newReview: newReviewSubmitReducer,
     newProduct: newProductReducer,
+    product:productReducer,
 })
 
 let initialState = {
