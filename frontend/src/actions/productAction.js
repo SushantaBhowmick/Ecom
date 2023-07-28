@@ -18,13 +18,16 @@ import {
   DELETE_PRODUCT_REQUEST,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
+  UPDATE_PRODUCT_REQUEST,
+  UPDATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_FAIL,
   CLEAR_ERRORS
 } from "../constants/productConstant"
 
 
 //Get All Products
 export const getProduct =
-  (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) =>
+  (keyword = "", currentPage = 1, price = [0, 99000], category, ratings = 0) =>
     async (dispatch) => {
       try {
         dispatch({ type: ALL_PRODUCT_REQUEST });
@@ -97,6 +100,36 @@ export const createProduct = (productData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: NEW_PRODUCT_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+
+// updata Product -Admin
+export const updateProduct = (id,productData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PRODUCT_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+      withCredentials: true,
+    }
+
+    const { data } = await axios.put(
+      `http://localhost:4000/api/v1/admin/product/${id}`, 
+      productData, config
+      );
+
+    dispatch({
+      type: UPDATE_PRODUCT_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
   }
