@@ -13,7 +13,7 @@ import {
 } from "./reducers/productReducer";
 import {forgotPasswordReducer, profileReducer, userReducer} from './reducers/userReducer'
 import { cartReducer } from "./reducers/cartReducer";
-import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from "./reducers/orderReducer";
+import { OrderReducer, allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer } from "./reducers/orderReducer";
 
 const persistConfig = {
     key:'root',
@@ -33,6 +33,8 @@ const reducer = combineReducers({
     newReview: newReviewSubmitReducer,
     newProduct: newProductReducer,
     product:productReducer,
+    allOrders: allOrdersReducer,
+    order: OrderReducer,
 })
 
 let initialState = {

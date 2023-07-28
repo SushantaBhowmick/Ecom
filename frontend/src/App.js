@@ -32,7 +32,9 @@ import OrderDetails from './components/Order/OrderDetails';
 import Dashboard from './components/Admin/Dashboard';
 import ProductList from './components/Admin/ProductList';
 import NewProduct from './components/Admin/NewProduct';
-import UpdateProduct from './components/Admin/UpdateProduct.jsx';
+import UpdateProduct from './components/Admin/UpdateProduct';
+import OrderList from './components/Admin/OrderList';
+import UpdateOrder from './components/Admin/UpdateOrder.jsx';
 
 
 
@@ -93,6 +95,8 @@ function App() {
       <Route isAdmin={true} exact path='/admin/products' element={<ProductList /> } />
       <Route isAdmin={true}  path='/admin/product' element={<NewProduct /> } />
       <Route isAdmin={true}  path='/admin/product/:id' element={<UpdateProduct /> } />
+      <Route isAdmin={true}  path='/admin/orders' element={<OrderList /> } />
+      <Route isAdmin={true}  path='/admin/order/:id' element={<UpdateOrder /> } />
 
     </Route>
 
