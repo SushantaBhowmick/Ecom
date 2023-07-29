@@ -1,5 +1,5 @@
 
-import { createStore, combineReducers,applyMiddleware} from "redux";
+import { legacy_createStore as createStore, combineReducers,applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import { persistStore,persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -9,9 +9,11 @@ import {
     newReviewSubmitReducer,
     productDetailsReducer, 
     productReducer, 
-    productsReducer 
+    productReviewsReducer, 
+    productsReducer, 
+    reviewsReducer
 } from "./reducers/productReducer";
-import {forgotPasswordReducer, profileReducer, userReducer} from './reducers/userReducer'
+import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer} from './reducers/userReducer'
 import { cartReducer } from "./reducers/cartReducer";
 import { OrderReducer, allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer } from "./reducers/orderReducer";
 
@@ -35,6 +37,10 @@ const reducer = combineReducers({
     product:productReducer,
     allOrders: allOrdersReducer,
     order: OrderReducer,
+    allUsers: allUsersReducer,
+    userDetails: userDetailsReducer,
+    productReview: productReviewsReducer,
+    review: reviewsReducer,
 })
 
 let initialState = {

@@ -34,7 +34,10 @@ import ProductList from './components/Admin/ProductList';
 import NewProduct from './components/Admin/NewProduct';
 import UpdateProduct from './components/Admin/UpdateProduct';
 import OrderList from './components/Admin/OrderList';
-import UpdateOrder from './components/Admin/UpdateOrder.jsx';
+import UpdateOrder from './components/Admin/UpdateOrder';
+import UserList from './components/Admin/UserList';
+import UpdateUser from './components/Admin/UpdateUser';
+import ReviewList from './components/Admin/ReviewList.jsx';
 
 
 
@@ -97,7 +100,9 @@ function App() {
       <Route isAdmin={true}  path='/admin/product/:id' element={<UpdateProduct /> } />
       <Route isAdmin={true}  path='/admin/orders' element={<OrderList /> } />
       <Route isAdmin={true}  path='/admin/order/:id' element={<UpdateOrder /> } />
-
+      <Route isAdmin={true} exact path='/admin/users' element={<UserList /> } />
+      <Route isAdmin={true} exact path='/admin/user/:id' element={<UpdateUser /> } />
+      <Route isAdmin={true} exact path='/admin/reviews' element={<ReviewList /> } />
     </Route>
 
  
@@ -115,4 +120,4 @@ function App() {
 export default App;
 
 
-//12.52.05s
+//14.22.45s

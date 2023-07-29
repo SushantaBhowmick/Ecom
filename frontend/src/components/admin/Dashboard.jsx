@@ -7,13 +7,15 @@ import Chart from 'chart.js/auto';
 import { Doughnut, Line } from "react-chartjs-2"
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProduct } from '../../actions/productAction'
+import { getAllOrders } from '../../actions/orderAction'
+import { getUsers } from '../../actions/userAction'
 
 const Dashboard = () => {
 
     const dispatch = useDispatch()
     const { products } = useSelector((state) => state.products);
-    // const { orders } = useSelector((state) => state.allOrders);
-    // const { users } = useSelector((state) => state.allUsers);
+    const { orders } = useSelector((state) => state.allOrders);
+    const { users } = useSelector((state) => state.allUsers);
 
     let outOfStock = 0;
 
@@ -26,7 +28,8 @@ const Dashboard = () => {
     useEffect(() => {
 
         dispatch(getAdminProduct())
-
+        dispatch(getAllOrders())
+        dispatch(getUsers());
     }, [dispatch])
     const lineState = {
         labels: ["Initial Amount", "Amount Earned"],
@@ -72,11 +75,11 @@ const Dashboard = () => {
                         </Link>
                         <Link to={"/admin/orders"}>
                             <p>Orders</p>
-                            <p>4</p>
+                            <p>{orders && orders.length}</p>
                         </Link>
                         <Link to={"/admin/users"}>
                             <p>Users</p>
-                            <p>5</p>
+                            <p>{users ? users.length : 9}</p>
                         </Link>
                     </div>
                 </div>
