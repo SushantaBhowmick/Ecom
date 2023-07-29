@@ -119,11 +119,11 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
         url: result.secure_url,
       });
     }
-  
+
     req.body.images = imagesLinks;
   }
 
-  
+
 
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -238,8 +238,13 @@ exports.deleteProductReviews = catchAsyncError(async (req, res, next) => {
   reviews.forEach(rev => {
     avg += rev.rating
   })
-  const ratings = avg / reviews.length;
+  let ratings = 0;
+  if (reviews.length === 0) {
+    ratings = 0;
+  } else {
+    ratings = avg / reviews.length;
 
+  }
   const numOfReviews = reviews.length;
   await Product.findByIdAndUpdate(req.query.productId, {
     reviews,

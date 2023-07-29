@@ -210,11 +210,11 @@ export const newReview = (reviewData) => async (dispatch) => {
 
 
 //Get ALl Reviews of a product
-export const allReview = (id) => async (dispatch) => {
+export const allReviews = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/reviews/${id}`,{withCredentials:true});
+    const { data } = await axios.get(`http://localhost:4000/api/v1/reviews?id=${id}`,{withCredentials:true});
 
     dispatch({
       type: ALL_REVIEW_SUCCESS,
@@ -233,11 +233,11 @@ export const DelReview = (reviewId,productId) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_REVIEW_REQUEST });
 
-    const { data } = await axios.delete(`http://localhost:4000/api/v1/reviews/${reviewId}&productId=${productId}`,{withCredentials:true});
+    const { data } = await axios.delete(`http://localhost:4000/api/v1/reviews?id=${reviewId}&productId=${productId}`,{withCredentials:true});
 
     dispatch({
       type: DELETE_REVIEW_SUCCESS,
-      payload: data.reviews,
+      payload: data.success,
     });
   } catch (error) {
     dispatch({
