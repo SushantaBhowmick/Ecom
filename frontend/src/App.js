@@ -7,6 +7,8 @@ import WebFont from 'webfontloader'
 import './App.css';
 import Header from "./components/layout/Header/Header"
 import Footer from './components/layout/Footer/Footer';
+import About from './components/layout/About/About';
+import Contact from './components/layout/Contact/Contact';
 import Home from './components/Home/Home';
 import ProductDetails from './components/Product/ProductDetails';
 import Products from './components/Product/Products';
@@ -37,7 +39,7 @@ import OrderList from './components/Admin/OrderList';
 import UpdateOrder from './components/Admin/UpdateOrder';
 import UserList from './components/Admin/UserList';
 import UpdateUser from './components/Admin/UpdateUser';
-import ReviewList from './components/Admin/ReviewList.jsx';
+import ReviewList from './components/Admin/ReviewList';
 
 
 
@@ -79,6 +81,8 @@ function App() {
     <Route exact path='/search' element={<Search />}/>
     <Route exact path='/login' element={<LoginSignup />} />
     <Route exact path='/cart' element={<Cart />} />
+    <Route exact path='/about' element={<About />} />
+    <Route exact path='/contact' element={<Contact />} />
 
     <Route element={<ProtectedRoute/> }>
       <Route exact path='/account' element={<Profile />} />
@@ -120,4 +124,4 @@ function App() {
 export default App;
 
 
-//14.22.45s
+//15.18.45s
