@@ -31,7 +31,7 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1)
     const [comment,setComment] =useState();
     const [rating,setRating]= useState();
-    const [open,setOpen]= useState();
+    const [open,setOpen]= useState(false);
 
     
     const { product, loading, error } = useSelector((state) => state.productDetails);

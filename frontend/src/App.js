@@ -40,6 +40,7 @@ import UpdateOrder from './components/Admin/UpdateOrder';
 import UserList from './components/Admin/UserList';
 import UpdateUser from './components/Admin/UpdateUser';
 import ReviewList from './components/Admin/ReviewList';
+import NotFound from './components/layout/NotFound/NotFound.jsx';
 
 
 
@@ -67,6 +68,7 @@ function App() {
 
   },[])
 
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
   
 
   return (
@@ -80,7 +82,6 @@ function App() {
     <Route path='/products/:keyword' element={<Products />}/>
     <Route exact path='/search' element={<Search />}/>
     <Route exact path='/login' element={<LoginSignup />} />
-    <Route exact path='/cart' element={<Cart />} />
     <Route exact path='/about' element={<About />} />
     <Route exact path='/contact' element={<Contact />} />
 
@@ -90,6 +91,7 @@ function App() {
       <Route exact path='/password/update' element={<UpdatePassword />} />
       <Route exact path='/login/shipping' element={<Shipping />} />
       <Route exact path='/order/confirm' element={<ConfirmOrder />} />
+      <Route exact path='/cart' element={<Cart />} />
 
      {stripeApiKey && <Route exact path='/process/payment' element={ <Elements stripe={loadStripe(stripeApiKey)} > <Payment /> </Elements>} />}
 
@@ -113,6 +115,7 @@ function App() {
     <Route exact path='/password/forgot' element={<ForgotPassword />} />
     <Route exact path='/password/reset/:token' element={<ResetPassword />} />
 
+    <Route path="*" element={ <NotFound />} />
 
     
     </Routes>
@@ -122,6 +125,3 @@ function App() {
 }
 
 export default App;
-
-
-//15.18.45s

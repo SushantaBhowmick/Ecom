@@ -71,7 +71,7 @@ export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: REGITER_USER_REQUEST });
     const config = {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { "Content-Type": "application/json" },
       withCredentials: true,
     }
     const { data } = await axios.post(`http://localhost:4000/api/v1/register`,
@@ -127,7 +127,7 @@ export const updateProfile = (userData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
 
-    const config = { headers: { "Content-Type": "multipart/form-data" },withCredentials: true };
+    const config = { headers: { "Content-Type": "application/json" },withCredentials: true };
 
     const { data } = await axios.put(`http://localhost:4000/api/v1/me/update`, userData, config);
 
