@@ -4,7 +4,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useDispatch, useSelector } from "react-redux"
 import { useAlert } from "react-alert"
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import MetaData from '../layout/MetaData';
 import Sidebar from './Sidebar';
