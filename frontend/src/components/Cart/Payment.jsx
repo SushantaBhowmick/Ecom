@@ -60,7 +60,7 @@ const Payment = () => {
                 withCredentials: true,
             };
             const { data } = await axios.post(
-                "/api/v1/payment/process",
+                "https://ecommerce-store-g8wi.onrender.com/api/v1/payment/process",
                 paymentData,
                 config
             )

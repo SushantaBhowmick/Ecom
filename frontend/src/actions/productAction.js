@@ -38,10 +38,10 @@ export const getProduct =
       try {
         dispatch({ type: ALL_PRODUCT_REQUEST });
 
-        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+        let link = `https://ecommerce-store-g8wi.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
         if (category) {
-          link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+          link = `https://ecommerce-store-g8wi.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
         }
 
         const { data } = await axios.get(link, { withCredentials: true });
@@ -64,7 +64,7 @@ export const getProduct =
 export const getAdminProduct = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_PRODUCT_REQUEST })
-    const { data } = await axios.get(`/api/v1/admin/products`,
+    const { data } = await axios.get(`https://ecommerce-store-g8wi.onrender.com/api/v1/admin/products`,
       { withCredentials: true }
       );
 
@@ -95,7 +95,7 @@ export const createProduct = (productData) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      "/api/v1/admin/product/new", 
+      "https://ecommerce-store-g8wi.onrender.com/api/v1/admin/product/new", 
       productData, config
       );
 
@@ -125,7 +125,7 @@ export const updateProduct = (id,productData) => async (dispatch) => {
     }
 
     const { data } = await axios.put(
-      `/api/v1/admin/product/${id}`, 
+      `https://ecommerce-store-g8wi.onrender.com/api/v1/admin/product/${id}`, 
       productData, config
       );
 
@@ -147,7 +147,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
     const { data } = await axios.delete(
-      `/api/v1/admin/product/${id}`, 
+      `https://ecommerce-store-g8wi.onrender.com/api/v1/admin/product/${id}`, 
       {withCredentials: true},
       );
 
@@ -168,7 +168,7 @@ export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/product/${id}`, { withCredentials: true });
+    const { data } = await axios.get(`https://ecommerce-store-g8wi.onrender.com/api/v1/product/${id}`, { withCredentials: true });
 
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
@@ -194,7 +194,7 @@ export const newReview = (reviewData) => async (dispatch) => {
       withCredentials: true,
     }
 
-    const { data } = await axios.put(`/api/v1/review`, reviewData, config);
+    const { data } = await axios.put(`https://ecommerce-store-g8wi.onrender.com/api/v1/review`, reviewData, config);
 
     dispatch({
       type: NEW_REVIEW_SUCCESS,
@@ -214,7 +214,7 @@ export const allReviews = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/reviews?id=${id}`,{withCredentials:true});
+    const { data } = await axios.get(`https://ecommerce-store-g8wi.onrender.com/api/v1/reviews?id=${id}`,{withCredentials:true});
 
     dispatch({
       type: ALL_REVIEW_SUCCESS,
@@ -233,7 +233,7 @@ export const DelReview = (reviewId,productId) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_REVIEW_REQUEST });
 
-    const { data } = await axios.delete(`/api/v1/reviews?id=${reviewId}&productId=${productId}`,{withCredentials:true});
+    const { data } = await axios.delete(`https://ecommerce-store-g8wi.onrender.com/api/v1/reviews?id=${reviewId}&productId=${productId}`,{withCredentials:true});
 
     dispatch({
       type: DELETE_REVIEW_SUCCESS,
