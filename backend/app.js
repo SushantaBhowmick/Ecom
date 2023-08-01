@@ -20,11 +20,9 @@ app.use("*", cors({
   origin: true,
   credentials: true,
 })
-)
+);
 app.use(cookieParser());
 app.use(fileUpload());
-
-
 
 
 //Route Imports
