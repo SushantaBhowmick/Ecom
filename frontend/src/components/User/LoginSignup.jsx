@@ -119,8 +119,7 @@ const LoginSignup = () => {
                         </div>
                         <button ref={switcherTab}></button>
                     </div>
-                    <form 
-                    ref={loginTab} className="loginForm" onSubmit={loginSubmit}>
+                    <form action="" ref={loginTab} className="loginForm" onSubmit={loginSubmit}>
                         <div className="loginEmail">
                             <MailOutlineIcon />
                             <input type="email"
