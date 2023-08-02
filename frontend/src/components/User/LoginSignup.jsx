@@ -119,7 +119,8 @@ const LoginSignup = () => {
                         </div>
                         <button ref={switcherTab}></button>
                     </div>
-                    <form action="" ref={loginTab} className="loginForm" onSubmit={loginSubmit}>
+                    <form 
+                    ref={loginTab} className="loginForm" onSubmit={loginSubmit}>
                         <div className="loginEmail">
                             <MailOutlineIcon />
                             <input type="email"
@@ -143,7 +144,6 @@ const LoginSignup = () => {
                         <input type="submit" value={"Login"} className='loginBtn' />
                     </form>
                     <form action=""
-                    method='POST'
                         className="signUpForm"
                         ref={registerTab}
                         encType='multipart/form-data'
