@@ -16,11 +16,7 @@ if(process.env.NODE_ENV !== "PRODUCTION"){
 app.use(express.json({limit: '50mb'}));
 app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-app.use(cors({
-  origin: true,
-  credentials: true,
-})
-);
+app.use(cors());
 app.use(cookieParser());
 app.use(fileUpload());
 
