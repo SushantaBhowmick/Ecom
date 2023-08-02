@@ -143,6 +143,7 @@ const LoginSignup = () => {
                         <input type="submit" value={"Login"} className='loginBtn' />
                     </form>
                     <form action=""
+                    method='POST'
                         className="signUpForm"
                         ref={registerTab}
                         encType='multipart/form-data'
