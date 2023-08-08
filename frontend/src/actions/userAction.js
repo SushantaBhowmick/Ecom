@@ -49,7 +49,7 @@ export const login = (email, password) => async (dispatch) => {
       credentials: "include",
      }
 
-    const { data } = await axios.post(`https://ecommerce-store-g8wi.onrender.com/api/v1/login`,
+    const { data } = await axios.post(`http://localhost:4000/api/v1/login`,
       { email, password },
       config,
 
@@ -101,7 +101,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(`https://ecommerce-store-g8wi.onrender.com/api/v1/me`,{withCredentials: true,
+    const { data } = await axios.get(`http://localhost:4000/api/v1/me`,{withCredentials: true,
     credentials: "include",});
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
