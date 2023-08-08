@@ -195,7 +195,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" },withCredentials: true };
 
     const { data } = await axios.put(
-      `https://ecommerce-store-g8wi.onrender.com/api/v1/password/reset/${token}`,
+      `https://64d2a6e3b614120b1e314438--taupe-gnome-da1cd3.netlify.app/api/v1/password/reset/${token}`,
       passwords,
       config
     );
