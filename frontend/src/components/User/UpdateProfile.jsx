@@ -108,6 +108,7 @@ const UpdateProfile = () => {
                                <img src={avatarPreview} alt="Avatar Preview" />
                                <input type="file"
                                    name='avatar'
+                                   required
                                    accept='image/*'
                                    onChange={updateProfileDataChange}
                                />
