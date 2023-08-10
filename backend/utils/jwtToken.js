@@ -3,7 +3,8 @@
 const sendToken = (user, statusCode, res) => {
 
     const token = user.getJWTToken();
-
+    https://ecommerce-store-g8wi.onrender.com
+    http://localhost:4000
     //options for cookie 
     const options = {
         expires: new Date(
