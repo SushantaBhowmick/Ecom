@@ -16,7 +16,6 @@ const OrderDetails = () => {
     const alert = useAlert();
     const {id} = useParams();
 
-  
 
     useEffect(()=>{
         if(error){

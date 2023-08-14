@@ -120,7 +120,7 @@ const UpdateUser = () => {
                 </div>
 
             </div>
-            {id}
+            
 
         </Fragment>
     )

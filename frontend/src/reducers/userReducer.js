@@ -233,7 +233,7 @@ export const allUsersReducer = (state = { users: [] }, action) => {
   };
   
 
-export const userDetailsReducer = (state = { users: {} }, action) => {
+export const userDetailsReducer = (state = { user: {} }, action) => {
     switch (action.type) {
         case USER_DETAILS_REQUEST:
             return {
